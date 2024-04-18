@@ -3,8 +3,8 @@ class CoursesController < ApplicationController
 
 
   def index
-    @courses = Course.all
-    render json: @courses
+    @courses = Course.includes(:instructor).all
+    render :index
   end
 
 

@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
+    render json: @message
   end
 
   def new
@@ -16,7 +17,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to @message, notice: 'Message was successfully created.'
     else
-      render :new
+      render :show
     end
   end
 
@@ -29,6 +30,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:content, :sent_at, :user_id)
+    params.permit(:content, :sent_at, :user_id)
   end
 end
