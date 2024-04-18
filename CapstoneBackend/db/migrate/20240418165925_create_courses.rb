@@ -5,7 +5,7 @@ class CreateCourses < ActiveRecord::Migration[7.1]
       t.text :description
       t.datetime :start_time
       t.datetime :end_time
-      t.references :instructor, null: false, foreign_key: true
+      t.references :instructor
 
       t.timestamps
     end
