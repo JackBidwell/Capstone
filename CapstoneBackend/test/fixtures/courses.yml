@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  start_time: 2024-04-18 10:51:39
+  end_time: 2024-04-18 10:51:39
+  instructor: one
+
+two:
+  title: MyString
+  description: MyText
+  start_time: 2024-04-18 10:51:39
+  end_time: 2024-04-18 10:51:39
+  instructor: two
