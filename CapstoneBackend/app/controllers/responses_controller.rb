@@ -3,7 +3,8 @@ class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :destroy]
 
   def index
-    @responses = Response.all
+    @responses = Response.includes(:message).all
+    render :index
   end
 
   def show

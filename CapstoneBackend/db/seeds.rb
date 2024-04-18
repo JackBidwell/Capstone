@@ -9,13 +9,20 @@ users = User.create([
 # Create some courses
 courses = Course.create([
   { title: "Intermediate Crossfit", description: "Intermediate Crossfit, this class assumes that you know the basics of the movements and gets going right away.", start_time: DateTime.now, end_time: DateTime.now + 1.year, instructor_id: users[3].id },
-  { title: "Treadmill haven", description: "Try out this intensive cardio class that takes place in one place. ", start_time: DateTime.now, end_time: DateTime.now + 1.year, instructor_id: users[3].id }
+  { title: "Treadmill haven", description: "Try out this intensive cardio class that takes place in one place.", start_time: DateTime.now, end_time: DateTime.now + 1.year, instructor_id: users[3].id }
 ])
 
 # Create some messages
 messages = Message.create([
   { content: "Welcome to the course!", sent_at: DateTime.now, user_id: users[0].id },
   { content: "Thank you for joining!", sent_at: DateTime.now, user_id: users[1].id }
+])
+
+# Create some responses to messages
+responses = Response.create([
+  { content: "Excited to be here!", message_id: messages[0].id, user_id: users[1].id },
+  { content: "Looking forward to learning!", message_id: messages[0].id, user_id: users[2].id },
+  { content: "Can't wait to start!", message_id: messages[1].id, user_id: users[0].id }
 ])
 
 # Create some course enrollments

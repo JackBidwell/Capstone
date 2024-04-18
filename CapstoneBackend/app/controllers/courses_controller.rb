@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :update, :destroy]
-  before_action :check_admin, only: [:create]
+  before_action :check_admin, only: [:create, :destroy]
   before_action :check_admin_or_instructor, only: [:update]
 
 
