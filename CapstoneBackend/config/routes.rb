@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   # User routes
   resources :users
+  delete "users/:id", to: "users#destroy"
+
+  resources :responses
 
   # Course routes
   resources :courses

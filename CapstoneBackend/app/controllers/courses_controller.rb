@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :update, :destroy]
+  before_action :check_admin, only: [:create]
+  before_action :check_admin_or_instructor, only: [:update]
 
 
   def index
@@ -47,4 +49,5 @@ class CoursesController < ApplicationController
   def course_params
     params.require(:course).permit(:name, :description, :duration)
   end
+
 end

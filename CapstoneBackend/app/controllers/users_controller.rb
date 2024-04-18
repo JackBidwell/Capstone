@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
+  before_action :check_admin, only: [:show, :index]
+
   def index
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+    render json: @user
   end
 
   def new
@@ -42,6 +45,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:FirstName, :LastName, :email, :password, :password_confirmation, :admin, :member, :trialuser, :instructor)
+    params.permit(:FirstName, :LastName, :email, :password, :password_confirmation, :admin, :member, :trialuser, :instructor)
   end
 end
