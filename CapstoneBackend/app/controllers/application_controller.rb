@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
 
   def current_user
-    auth_headers = request.headers["Authorization"]
+    auth_headers = request.headers['Authorization']
     if auth_headers.present? && auth_headers[/(?<=\A(Bearer ))\S+\z/]
       token = auth_headers[/(?<=\A(Bearer ))\S+\z/]
       begin
@@ -10,10 +10,12 @@ class ApplicationController < ActionController::Base
           token,
           Rails.application.credentials.fetch(:secret_key_base),
           true,
-          { algorithm: "HS256" }
+          { algorithm: 'HS256' }
         )
-        User.find_by(id: decoded_token[0]["user_id"])
+        User.find_by(id: decoded_token[0]['user_id'])
       rescue JWT::ExpiredSignature
+        nil
+      rescue JWT::DecodeError
         nil
       end
     end
