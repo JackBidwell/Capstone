@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.includes(:instructor).all
-    render :index
+    render json: @course
   end
 
 

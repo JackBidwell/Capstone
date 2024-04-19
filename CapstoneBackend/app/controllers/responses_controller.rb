@@ -11,10 +11,6 @@ class ResponsesController < ApplicationController
     render json: @response
   end
 
-  def new
-    @response = Response.new
-  end
-
   def create
     @response = Response.new(response_params)
     if @response.save

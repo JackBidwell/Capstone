@@ -6,4 +6,7 @@ json.array! @users do |user|
       json.extract! enrollment.course, :id, :title, :description
     end
   end
+    json.messages user.messages do |message|
+    json.extract! message, :id, :content, :sent_at
+  end
 end

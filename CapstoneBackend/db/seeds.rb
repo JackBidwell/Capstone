@@ -14,21 +14,20 @@ courses = Course.create([
 
 # Create some messages
 messages = Message.create([
-  { content: "Welcome to the course!", sent_at: DateTime.now, user_id: users[0].id },
-  { content: "Thank you for joining!", sent_at: DateTime.now, user_id: users[1].id }
+  { content: "Welcome to the course!", user_id: users[0].id },
+  { content: "Thank you for joining!", user_id: users[1].id }
 ])
 
-# Create some responses to messages
+# Create some responses
 responses = Response.create([
-  { content: "Excited to be here!", message_id: messages[0].id, user_id: users[1].id },
-  { content: "Looking forward to learning!", message_id: messages[0].id, user_id: users[2].id },
-  { content: "Can't wait to start!", message_id: messages[1].id, user_id: users[0].id }
+  { content: "Glad to be here!", message_id: messages[0].id, user_id: users[1].id },
+  { content: "You're welcome!", message_id: messages[1].id, user_id: users[0].id }
 ])
 
 # Create some course enrollments
 enrollments = CourseEnrollment.create([
-  { user_id: users[0].id, course_id: courses[0].id, enrollment_date: Date.today, status: "active" },
-  { user_id: users[1].id, course_id: courses[1].id, enrollment_date: Date.today, status: "active" }
+  { user_id: users[0].id, course_id: courses[0].id, status: "active" },
+  { user_id: users[1].id, course_id: courses[1].id, status: "active" }
 ])
 
 puts "Database seeded!"

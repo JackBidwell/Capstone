@@ -10,12 +10,10 @@ class MessagesController < ApplicationController
     render json: @message
   end
 
-  def new
-    @message = Message.new
-  end
 
   def create
     @message = Message.new(message_params)
+    @message.user_id = current_user.id
     if @message.save
       redirect_to @message, notice: 'Message was successfully created.'
     else
@@ -32,6 +30,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.permit(:content, :sent_at, :user_id)
+    params.permit(:content, :user_id)
   end
 end

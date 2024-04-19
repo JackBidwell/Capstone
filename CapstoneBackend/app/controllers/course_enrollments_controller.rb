@@ -6,16 +6,13 @@ class CourseEnrollmentsController < ApplicationController
     @course_enrollments = CourseEnrollment.all
   end
 
-  def new
-    @course_enrollment = CourseEnrollment.new
-  end
 
   def create
     @course_enrollment = CourseEnrollment.new(course_enrollment_params)
+    @course_enrollment.user_id = current_user.id
     if @course_enrollment.save
-      redirect_to courses_path, notice: 'Enrollment was successfully created.'
-    else
-      render :new
+      render json: {message: "You have booked your class"}
+
     end
   end
 
@@ -28,6 +25,6 @@ class CourseEnrollmentsController < ApplicationController
   private
 
   def course_enrollment_params
-    params.require(:course_enrollment).permit(:user_id, :course_id, :enrollment_date, :status)
+    params.permit(:user_id, :course_id, :enrollment_date, :status)
   end
 end
