@@ -22,7 +22,7 @@ export function Header() {
             {isLoggedIn ? (
               <>
                 <li className="nav-item">
-                  <Link to="/your-courses" className="nav-link">Your Courses</Link>
+                  <Link to="/YourCourses" className="nav-link">Your Courses</Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/courses" className="nav-link">All Courses</Link>

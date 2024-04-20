@@ -6,6 +6,7 @@ import { CreateUser } from './CreateUser';
 import { Login } from './Login';
 import { MessageBoard } from './MessageBoard';
 import { Courses } from './Courses';
+import { YourCourses } from './YourCourses'
 
 function Content() {
   return (
@@ -15,6 +16,7 @@ function Content() {
         <Route path='/Login' element={<Login />} />
         <Route path='/MessageBoard' element={<MessageBoard />} />
         <Route path="/Courses" element={<Courses />} />
+        <Route path="/YourCourses" element={<YourCourses />} />
       </Routes>
       <Header />
       <Home />

@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   resources :courses
 
   # Message routes
-  resources :messages, except: [:update, :edit]
+  resources :messages
+  delete "messages/:id", to: "messages#destroy"
 
   # Course Enrollments routes
   resources :course_enrollments, only: [:index, :new, :create, :destroy]
+  delete "course_enrollments/:id", to: "course_enrollments#destroy"
 
   resources :sessions
 
