@@ -14,7 +14,8 @@ export function Login() {
         console.log(response.data);
         localStorage.setItem('jwt', response.data.jwt);
         localStorage.setItem('name', response.data.name);
-        localStorage.setItem('user_id', response.data.user_id)
+        localStorage.setItem('user_id', response.data.user_id);
+        localStorage.setItem('role', response.data.role);
       })
       .catch((error) => {
         console.log(error);

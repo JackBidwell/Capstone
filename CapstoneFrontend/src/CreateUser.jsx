@@ -5,16 +5,22 @@ export function CreateUser() {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-
     const formObject = {};
     formData.forEach((value, key) => {
-
       if (key === 'role') {
-        formObject[key] = parseInt(value, 10);
+        const roleValue = parseInt(value, 10);
+        if (!isNaN(roleValue) && roleValue !== 0) {
+          formObject[key] = roleValue;
+        } else {
+          console.error("Invalid role selected");
+          return; // Early exit if the role is not valid
+        }
       } else {
         formObject[key] = value;
       }
     });
+
+    console.log("Form data to submit:", formObject); // Debug log
 
     axios.post("http://[::1]:3000/users.json", formObject)
       .then((response) => {
@@ -23,7 +29,7 @@ export function CreateUser() {
         window.location.href = '/';
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 

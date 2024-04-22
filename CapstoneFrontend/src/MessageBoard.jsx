@@ -6,6 +6,11 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 export function MessageBoard() {
   const [messages, setMessages] = useState([]);
   const [messageContent, setMessageContent] = useState('');
+  const currentUser = localStorage.getItem('user_id');
+
+  const isCurrentUser = (senderId) => {
+    return senderId.toString() === currentUserId;
+  };
 
   const fetchMessages = async () => {
     const jwt = localStorage.getItem('jwt');

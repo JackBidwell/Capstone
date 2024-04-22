@@ -19,6 +19,7 @@ export function YourCourses() {
             Authorization: `Bearer ${jwt}`
           }
         });
+        console.log(response.data);
         setEnrollments(response.data.course_enrollments);
       } catch (error) {
         console.error('Error fetching user courses:', error);
