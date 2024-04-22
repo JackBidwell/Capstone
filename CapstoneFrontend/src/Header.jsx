@@ -11,10 +11,12 @@ export function Header() {
     window.location.href = '/';
   }
 
+  const welcomeMessage = isLoggedIn ? (isAdmin ? `Welcome Admin, ${username}` : `Welcome, ${username}`) : 'Welcome!';
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" to="/">{isLoggedIn ? `Welcome, ${username}` : 'Welcome!'}</Link>
+        <Link className="navbar-brand" to="/">{welcomeMessage}</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +31,7 @@ export function Header() {
                   <Link to="/members" className="nav-link">Members</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/attendance" className="nav-link">Attendance</Link>
+                  <Link to="/Attendance" className="nav-link">Attendance</Link>
                 </li>
                 <li className="nav-item">
                   <button className="nav-link btn btn-link" onClick={handleLogout} style={{ cursor: 'pointer' }}>Sign Out</button>

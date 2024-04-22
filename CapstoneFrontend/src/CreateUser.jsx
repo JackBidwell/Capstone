@@ -13,14 +13,14 @@ export function CreateUser() {
           formObject[key] = roleValue;
         } else {
           console.error("Invalid role selected");
-          return; // Early exit if the role is not valid
+          return;
         }
       } else {
         formObject[key] = value;
       }
     });
 
-    console.log("Form data to submit:", formObject); // Debug log
+    console.log("Form data to submit:", formObject);
 
     axios.post("http://[::1]:3000/users.json", formObject)
       .then((response) => {

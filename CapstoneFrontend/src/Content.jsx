@@ -10,6 +10,7 @@ import { Courses } from './Courses';
 import { YourCourses } from './YourCourses';
 import { YourAccount } from './YourAccount';
 import { Members } from './Members';
+import { Attendance } from './Attendance';
 
 function Content() {
   return (
@@ -24,6 +25,7 @@ function Content() {
         <Route path="/YourCourses" element={<YourCourses />} />
         <Route path="/YourAccount" element={<YourAccount />} />
         <Route path='/members' element={<Members />} />
+        <Route path='/Attendance' element={<Attendance />} />
       </Routes>
       <Footer />
     </>
