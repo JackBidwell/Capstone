@@ -2,15 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import './App.css';
 
 export function MessageBoard() {
   const [messages, setMessages] = useState([]);
   const [messageContent, setMessageContent] = useState('');
   const currentUser = localStorage.getItem('user_id');
-
-  const isCurrentUser = (senderId) => {
-    return senderId.toString() === currentUserId;
-  };
 
   const fetchMessages = async () => {
     const jwt = localStorage.getItem('jwt');
@@ -61,15 +58,32 @@ export function MessageBoard() {
     fetchMessages();
   }, []);
 
+  const getRoleClass = (role) => {
+    switch (role.toLowerCase()) {
+      case 'trialuser':
+        return 'badge bg-secondary';
+      case 'instructor':
+        return 'badge bg-primary';
+      case 'admin':
+        return 'badge bg-danger';
+      case 'member':
+        return 'badge bg-success';
+      default:
+        return '';
+    }
+  };
+
   return (
     <div className="container mt-4">
-      <h2>Message Board</h2>
+      <h2>Messages</h2>
       <div className="list-group">
         {messages.length > 0 ? (
           messages.map((message, index) => (
             <div key={index} className="list-group-item list-group-item-action flex-column align-items-start">
               <div className="d-flex w-100 justify-content-between">
-                <h5 className="badge bg-secondary">{message.sender.Role}: {message.sender.FirstName} {message.sender.LastName}</h5>
+                <h5 className={getRoleClass(message.sender.Role)}>
+                  {message.sender.Role}: {message.sender.FirstName} {message.sender.LastName}
+                </h5>
                 <small>Posted on: {new Date(message.created_at).toLocaleDateString()}</small>
                 <FontAwesomeIcon icon={faTrashAlt} onClick={() => deleteMessage(message.id)} style={{ cursor: 'pointer' }} />
               </div>

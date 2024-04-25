@@ -1,6 +1,6 @@
 class CourseEnrollmentsController < ApplicationController
   before_action :authenticate_user, except: [:index]
-  before_action :check_admin_or_instructor, only: [:index]
+  # before_action :check_admin_or_instructor, only: [:index]
 
   def index
     @course_enrollments = CourseEnrollment.all
