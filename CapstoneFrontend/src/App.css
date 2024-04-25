@@ -1,17 +1,10 @@
-  .App {
-    background-image: url('https://cdn.dmcl.biz/media/image/259380/o/GettyImages-1160527175.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    min-width: 100vw;
-    position: relative;
-  }
+/* App.css */
+body {
+  cursor: url('/barbell.cur'), auto;
+}
 
-  .role-instructor {
-    color: red;
-  }
 
-  .role-admin {
-    color: green;
-  }
+body * {
+  cursor: inherit;
+  /* Ensures all elements inherit the body's cursor */
+}

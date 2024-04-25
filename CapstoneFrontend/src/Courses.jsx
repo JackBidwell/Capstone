@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Courses.css';
 
 export function Courses() {
   const [courses, setCourses] = useState([]);
@@ -84,40 +85,43 @@ export function Courses() {
   };
 
   return (
-    <div className="container mt-3">
-      <h2 className="mb-3">Courses List</h2>
-      {courses.length > 0 ? (
-        <div className="list-group">
-          {courses.map(course => (
-            <div key={course.id} className="list-group-item list-group-item-action flex-column align-items-start">
-              <div className="d-flex w-100 justify-content-between">
-                <h3 className="mb-1">{course.title}</h3>
-                {isLoggedIn && !isAdmin && (
-                  <button className="btn btn-primary" onClick={() => handleEnrollment(course.id)}>Enroll</button>
-                )}
-                {isAdmin && (
-                  <button className="btn btn-danger" onClick={() => handleDelete(course.id)}>Delete</button>
-                )}
-              </div>
-              <p className="mb-2">{course.description}</p>
+    <div className="Courses">
+      <div className="container mt-3">
+        <h2 className="mb-3">Courses List</h2>
+        {courses.length > 0 ? (
+          <div className="list-group">
+            {courses.map(course => (
+              <div key={course.id} className="list-group-item list-group-item-action flex-column align-items-start">
+                <div className="d-flex w-100 justify-content-between">
+                  <h3 className="mb-1">{course.title}</h3>
+                  {isLoggedIn && !isAdmin && (
+                    <button className="btn btn-primary" onClick={() => handleEnrollment(course.id)}>Enroll</button>
+                  )}
+                  {isAdmin && (
+                    <button className="btn btn-danger" onClick={() => handleDelete(course.id)}>Delete</button>
+                  )}
+                </div>
+                <p className="mb-2">{course.description}</p>
 
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="text-muted">No courses available.</p>
-      )}
-      {isAdmin && (
-        <div className="mt-5">
-          <h2>Create New Course</h2>
-          <form onSubmit={handleCreateCourse}>
-            <input name="title" type="text" className="form-control mb-3" placeholder="Title" value={newCourse.title} onChange={updateNewCourseData} required />
-            <textarea name="description" className="form-control mb-3" placeholder="Description" value={newCourse.description} onChange={updateNewCourseData} required />
-            <button type="submit" className="btn btn-primary">Create Course</button>
-          </form>
-        </div>
-      )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-muted">No courses available.</p>
+        )}
+        {isAdmin && (
+          <div className="mt-5">
+            <h2>Create New Course</h2>
+            <form onSubmit={handleCreateCourse}>
+              <input name="title" type="text" className="form-control mb-3" placeholder="Title" value={newCourse.title} onChange={updateNewCourseData} required />
+              <textarea name="description" className="form-control mb-3" placeholder="Description" value={newCourse.description} onChange={updateNewCourseData} required />
+              <button type="submit" className="btn btn-primary">Create Course</button>
+            </form>
+          </div>
+        )}
+      </div>
     </div>
+
   );
 }
 

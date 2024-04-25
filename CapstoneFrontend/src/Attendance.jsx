@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import axios from 'axios';
 import './Attendance.css';
+import moment from 'moment'; // Import moment for date handling
 
 export function Attendance() {
   const [courseData, setCourseData] = useState([]);
@@ -14,22 +15,20 @@ export function Attendance() {
         const { data: courses } = await axios.get('http://localhost:3000/courses.json');
         const { data: enrollments } = await axios.get('http://localhost:3000/course_enrollments.json');
 
-
         const enrollmentCounts = enrollments.reduce((acc, enrollment) => {
-          const { status, course } = enrollment;
+          const { status, course, date } = enrollment;
           if (status === 'active') {
             const courseTitle = course;
-            acc[courseTitle] = (acc[courseTitle] || 0) + 1;
+            const formattedDate = moment(date).format('YYYY-MM-DD'); // Ensure date is in the right format
+            acc[courseTitle] = acc[courseTitle] || [];
+            acc[courseTitle].push({ date: formattedDate, count: (acc[courseTitle][formattedDate] || 0) + 1 });
           }
           return acc;
         }, {});
 
         const combinedData = courses.map(course => ({
           name: course.title,
-          data: [{
-            CurrentEnrollment: enrollmentCounts[course.title] || 0,
-            Capacity: course.capacity
-          }]
+          data: enrollmentCounts[course.title] || []
         }));
 
         setCourseData(combinedData);
@@ -56,14 +55,14 @@ export function Attendance() {
       <div className="row">
         {courseData.map((course, index) => (
           <div key={index} className="col-md-6 col-lg-4">
-            <h3 className='graph-title'>{course.name} </h3>
+            <h3 className='graph-title'>{course.name}</h3>
             <LineChart width={400} height={300} data={course.data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+              <XAxis dataKey="date" />
+              <YAxis domain={[0, 10]} />  {/* Set the domain for Y-axis */}
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="CurrentEnrollment" stroke="#8884d8" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
             </LineChart>
           </div>
         ))}

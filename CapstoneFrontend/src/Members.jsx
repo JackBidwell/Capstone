@@ -8,7 +8,7 @@ export function Members() {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const jwt = localStorage.getItem('jwt'); // Assuming JWT is used for authentication
+        const jwt = localStorage.getItem('jwt');
         const response = await axios.get('http://localhost:3000/users.json', {
           headers: {
             Authorization: `Bearer ${jwt}`
@@ -25,7 +25,7 @@ export function Members() {
   }, []);
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-3" style={{ opacity: '0.85' }}>
       <h2 className="mb-3">Members List</h2>
       {members.length > 0 ? (
         <div className="list-group">
