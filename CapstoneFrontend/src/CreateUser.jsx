@@ -25,7 +25,7 @@ export function CreateUser() {
     axios.post("http://[::1]:3000/users.json", formObject)
       .then((response) => {
         console.log(response.data);
-        localStorage.setItem("flashMessage", "Thank you for signing up");
+        alert("Account created successfully!");
         window.location.href = '/';
       })
       .catch((error) => {

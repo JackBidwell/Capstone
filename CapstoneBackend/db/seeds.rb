@@ -43,8 +43,8 @@ puts 'Created 5 courses...'
 
 # Create Enrollments
 Course.find_each do |course|
-  3.times do
-    student = User.where.not(id: course.instructor_id).sample # Exclude instructor
+  15.times do
+    student = User.where.not(id: course.instructor_id).sample
     CourseEnrollment.create!(
       user_id: student.id,
       course_id: course.id,

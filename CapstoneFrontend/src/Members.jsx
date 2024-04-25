@@ -33,7 +33,7 @@ export function Members() {
             <div key={member.id} className="list-group-item list-group-item-action flex-column align-items-start">
               <h3 className="mb-1">{member.FirstName} {member.LastName}</h3>
               <p className="mb-2">{member.email}</p>
-              <p className="text-muted">Role: </p>
+              <p className="text-muted">Role: {member.role} </p>
             </div>
           ))}
         </div>
