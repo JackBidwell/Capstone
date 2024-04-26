@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
-import './YourCourses.css'; // Import custom CSS for the YourCourses component
+
 
 export function YourCourses() {
   const [enrollments, setEnrollments] = useState([]);
