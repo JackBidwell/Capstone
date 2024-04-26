@@ -5,24 +5,22 @@ export function CreateUser() {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    const formObject = {};
-    formData.forEach((value, key) => {
-      if (key === 'role') {
-        const roleValue = parseInt(value, 10);
-        if (!isNaN(roleValue) && roleValue !== 0) {
-          formObject[key] = roleValue;
-        } else {
-          console.error("Invalid role selected");
-          return;
-        }
-      } else {
-        formObject[key] = value;
-      }
-    });
+    // Check if the role selection is valid (i.e., not the placeholder value)
+    const roleValue = formData.get('role');
+    if (!roleValue || roleValue === "0") {
+      console.error("Invalid role selected");
+      return;
+    }
 
-    console.log("Form data to submit:", formObject);
+    console.log("Form data to submit:", formData);
 
-    axios.post("http://[::1]:3000/users.json", formObject)
+    // Post the form data
+    axios({
+      method: 'post',
+      url: "http://[::1]:3000/users.json",
+      data: formData,
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
       .then((response) => {
         console.log(response.data);
         alert("Account created successfully!");
@@ -49,9 +47,10 @@ export function CreateUser() {
               <input name="password_confirmation" type="password" className="form-control mb-3" placeholder="Confirm Password" required />
               <select name="role" className="form-control mb-3" required>
                 <option value="0">Select Role</option>
-                <option value="2">7 Day Free Trial</option>
-                <option value="1">Member</option>
-                <option value="3">Instructor</option>
+                <option value="admin">Admin</option>
+                <option value="member">Member</option>
+                <option value="trialuser">7 Day Free Trial</option>
+                <option value="instructor">Instructor</option>
               </select>
               <input name="profile_picture" type="file" className='form-control mb-3' required />
               <button type="submit" className="btn btn-primary">Create Account</button>

@@ -24,6 +24,7 @@ export function YourAccount() {
           }
         });
         setUser(response.data);
+        console.log(response.data);
       } catch (err) {
         setError('Failed to fetch user details.');
         console.error(err);
@@ -66,11 +67,14 @@ export function YourAccount() {
     return <div>{error}</div>;
   }
 
+  const defaultPic = '/BlankProfile.webp'; // Path to the default image in the public folder
+
   return (
     <div className="container mt-4" style={{ backgroundColor: 'white' }}>
       <h2>Your Account</h2>
       {user ? (
         <div>
+          <img src={user.profile_picture || defaultPic} alt="Profile Picture" />
           <p>Name: {user.FirstName} {user.LastName}</p>
           <p>Email: {user.email}</p>
           <button className="btn btn-danger" onClick={deleteAccount}>Delete Account</button>
