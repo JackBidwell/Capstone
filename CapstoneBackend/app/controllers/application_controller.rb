@@ -34,11 +34,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-  def check_admin
-    authenticate_admin
-  end
-
   def check_admin_or_instructor
     unless current_user && (current_user.admin? || current_user.instructor?)
       render json: { error: "Unauthorized" }, status: :unauthorized

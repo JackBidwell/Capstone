@@ -5,7 +5,13 @@ import './Courses.css';
 
 export function Courses() {
   const [courses, setCourses] = useState([]);
-  const [newCourse, setNewCourse] = useState({ title: '', description: '', start_time: '', end_time: '' });
+  const [newCourse, setNewCourse] = useState({
+    title: '',
+    description: '',
+    start_time: '',
+    end_time: '',
+    instructor_id: ''  // Assuming the UI allows setting this
+  });
   const isLoggedIn = !!localStorage.getItem('jwt');
   const isAdmin = localStorage.getItem('role') === 'admin';
 
@@ -72,7 +78,7 @@ export function Courses() {
     }).then(() => {
       alert('Course created successfully!');
       fetchCourses();
-      setNewCourse({ title: '', description: '', start_time: '', end_time: '' });
+      setNewCourse({ title: '', description: '', start_time: '', end_time: '', instructor_id: '' });
     }).catch((error) => {
       console.error('Error creating course:', error);
       alert('Failed to create course.');
@@ -102,7 +108,6 @@ export function Courses() {
                   )}
                 </div>
                 <p className="mb-2">{course.description}</p>
-
               </div>
             ))}
           </div>
@@ -115,13 +120,15 @@ export function Courses() {
             <form onSubmit={handleCreateCourse}>
               <input name="title" type="text" className="form-control mb-3" placeholder="Title" value={newCourse.title} onChange={updateNewCourseData} required />
               <textarea name="description" className="form-control mb-3" placeholder="Description" value={newCourse.description} onChange={updateNewCourseData} required />
+              <input name="start_time" type="datetime-local" className="form-control mb-3" placeholder="Start Time" value={newCourse.start_time} onChange={updateNewCourseData} required />
+              <input name="end_time" type="datetime-local" className="form-control mb-3" placeholder="End Time" value={newCourse.end_time} onChange={updateNewCourseData} required />
+              <input name="instructor_id" type="number" className="form-control mb-3" placeholder="Instructor ID" value={newCourse.instructor_id} onChange={updateNewCourseData} />
               <button type="submit" className="btn btn-primary">Create Course</button>
             </form>
           </div>
         )}
       </div>
     </div>
-
   );
 }
 

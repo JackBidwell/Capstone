@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :update, :destroy]
-  before_action :check_admin, only: [:create, :destroy]
+  before_action :authenticate_admin, only: [:create, :destroy]
   before_action :check_admin_or_instructor, only: [:update]
 
 
@@ -47,7 +47,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :description, :duration)
+    params.permit(:name, :description, :start_time, :end_time, :instructor_id)
   end
 
 end
