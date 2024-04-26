@@ -19,8 +19,10 @@ export function YourCourses() {
             Authorization: `Bearer ${jwt}`
           }
         });
-        // console.log(response.data);
-        setEnrollments(response.data.course_enrollments);
+        console.log("API Response:", response.data); // Log the entire response data
+        const courseEnrollments = Array.isArray(response.data.course_enrollments) ? response.data.course_enrollments : [];
+        console.log("Processed Enrollments:", courseEnrollments); // Log the processed enrollments array
+        setEnrollments(courseEnrollments);
       } catch (error) {
         console.error('Error fetching user courses:', error);
       }
@@ -42,7 +44,9 @@ export function YourCourses() {
           Authorization: `Bearer ${jwt}`
         }
       });
-      setEnrollments(enrollments.filter((enrollment) => enrollment.id !== enrollmentId));
+      const updatedEnrollments = enrollments.filter(enrollment => enrollment.id !== enrollmentId);
+      console.log("Updated Enrollments after drop:", updatedEnrollments); // Log the enrollments after a course is dropped
+      setEnrollments(updatedEnrollments);
     } catch (error) {
       console.error('Error dropping course:', error);
     }

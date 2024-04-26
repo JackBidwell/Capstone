@@ -53,6 +53,7 @@ export function CreateUser() {
                 <option value="1">Member</option>
                 <option value="3">Instructor</option>
               </select>
+              <input name="profile_picture" type="file" className='form-control mb-3' required />
               <button type="submit" className="btn btn-primary">Create Account</button>
             </form>
           </div>
