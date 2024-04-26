@@ -1,0 +1,66 @@
+.YourCourses {
+  background-image: url('/Pyros.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 30px;
+}
+
+.list-group-item {
+  background-color: #e7f1ff;
+  margin-bottom: 15px;
+  border: 1px solid #b6d4fe;
+  border-radius: 5px;
+}
+
+.list-group-item-action {
+  transition: transform 0.2s ease;
+}
+
+.list-group-item-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+h3.mb-1 {
+  color: #0056b3;
+}
+
+.btn-danger {
+  float: right;
+}
+
+.text-muted {
+  color: #dbe9ff;
+}
+
+.badge.bg-secondary {
+  background-color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .list-group-item {
+    padding: 15px;
+  }
+}

@@ -1,10 +1,9 @@
-/* App.css */
-body {
-  cursor: url('/barbell.cur'), auto;
+.body-text {
+  font-size: 22px;
+  font-family: "Times New Roman", Times, serif;
 }
 
-
-body * {
-  cursor: inherit;
-  /* Ensures all elements inherit the body's cursor */
+.title {
+  font-size: 40px;
+  font-family: "Times New Roman", Times, serif;
 }

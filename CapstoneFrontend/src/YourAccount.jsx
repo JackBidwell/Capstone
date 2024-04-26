@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./YourAccount.css";
 
 export function YourAccount() {
   const [user, setUser] = useState(null);
@@ -24,7 +25,7 @@ export function YourAccount() {
           }
         });
         setUser(response.data);
-        console.log(response.data);
+        console.log(response.data.profile_picture);
       } catch (err) {
         setError('Failed to fetch user details.');
         console.error(err);
@@ -70,21 +71,21 @@ export function YourAccount() {
   const defaultPic = '/BlankProfile.webp'; // Path to the default image in the public folder
 
   return (
-    <div className="container mt-4" style={{ backgroundColor: 'white' }}>
-      <h2>Your Account</h2>
-      {user ? (
-        <div>
-          <img src={user.profile_picture || defaultPic} alt="Profile Picture" />
-          <p>Name: {user.FirstName} {user.LastName}</p>
-          <p>Email: {user.email}</p>
-          <button className="btn btn-danger" onClick={deleteAccount}>Delete Account</button>
-        </div>
-      ) : (
-        <p>No user details found.</p>
-      )}
-      {error && <p className="text-danger">{error}</p>}
+    <div className="account-container">
+      <h2 className="account-title">Your Account</h2>
+      <img
+        src={`http://localhost:3000/${user.profile_picture}`}
+        alt={`${user.FirstName}'s profile`}
+        className="profile-picture"
+      />
+      <div className="account-info">
+        <p>Name: {user.FirstName} {user.LastName}</p>
+        <p>Email: {user.email}</p>
+      </div>
+      <button className="delete-button" onClick={deleteAccount}>Delete Account</button>
     </div>
   );
+
 }
 
 export default YourAccount;

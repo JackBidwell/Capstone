@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
+import './YourCourses.css'; // Import custom CSS for the YourCourses component
 
 export function YourCourses() {
   const [enrollments, setEnrollments] = useState([]);
@@ -53,29 +54,32 @@ export function YourCourses() {
   };
 
   return (
-    <div className="container mt-3">
-      <h2 className="mb-3">Your Courses</h2>
-      {enrollments.length > 0 ? (
-        <div className="list-group">
-          {enrollments.map((enrollment) => (
-            <div key={enrollment.id} className="list-group-item list-group-item-action flex-column align-items-start">
-              <div className="d-flex w-100 justify-content-between">
-                <h3 className="mb-1">{enrollment.course.title}</h3>
-                <button className="btn btn-danger" onClick={() => handleDropCourse(enrollment.id)}>Drop Course</button>
+    <div className='YourCourses'>
+      <div className="container mt-3">
+        <h2 className="mb-3">Your Courses</h2>
+        {enrollments.length > 0 ? (
+          <div className="list-group">
+            {enrollments.map((enrollment) => (
+              <div key={enrollment.id} className="list-group-item list-group-item-action flex-column align-items-start">
+                <div className="d-flex w-100 justify-content-between">
+                  <h3 className="mb-1">{enrollment.course.title}</h3>
+                  <button className="btn btn-danger" onClick={() => handleDropCourse(enrollment.id)}>Drop Course</button>
+                </div>
+                <p className="mb-1">{enrollment.course.description}</p>
+                <small className="text-muted">Starts: {new Date(enrollment.course.start_time).toLocaleString()}</small>
+                <br />
+                <small className="text-muted">Ends: {new Date(enrollment.course.end_time).toLocaleString()}</small>
+                <br />
+                <span className="badge bg-secondary">{enrollment.status || 'Pending'}</span>
               </div>
-              <p className="mb-1">{enrollment.course.description}</p>
-              <small className="text-muted">Starts: {new Date(enrollment.course.start_time).toLocaleString()}</small>
-              <br />
-              <small className="text-muted">Ends: {new Date(enrollment.course.end_time).toLocaleString()}</small>
-              <br />
-              <span className="badge bg-secondary">{enrollment.status || 'Pending'}</span>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="text-muted">You are not enrolled in any courses.</p>
-      )}
+            ))}
+          </div>
+        ) : (
+          <p className="text-muted">You are not enrolled in any courses.</p>
+        )}
+      </div>
     </div>
+
   );
 }
 
