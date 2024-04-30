@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Courses.css';
 
 export function Courses() {
   const [courses, setCourses] = useState([]);

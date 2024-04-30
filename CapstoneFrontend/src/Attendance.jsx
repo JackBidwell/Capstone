@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import axios from 'axios';
-import './Attendance.css';
-import moment from 'moment'; // Import moment for date handling
+import moment from 'moment';
 
 export function Attendance() {
   const [courseData, setCourseData] = useState([]);
@@ -19,7 +18,7 @@ export function Attendance() {
           const { status, course, date } = enrollment;
           if (status === 'active') {
             const courseTitle = course;
-            const formattedDate = moment(date).format('YYYY-MM-DD'); // Ensure date is in the right format
+            const formattedDate = moment(date).format('YYYY-MM-DD');
             acc[courseTitle] = acc[courseTitle] || [];
             acc[courseTitle].push({ date: formattedDate, count: (acc[courseTitle][formattedDate] || 0) + 1 });
           }
@@ -59,7 +58,7 @@ export function Attendance() {
             <LineChart width={400} height={300} data={course.data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
-              <YAxis domain={[0, 10]} />  {/* Set the domain for Y-axis */}
+              <YAxis domain={[0, 10]} />
               <Tooltip />
               <Legend />
               <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />

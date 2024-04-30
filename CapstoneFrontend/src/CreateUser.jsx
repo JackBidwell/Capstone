@@ -5,7 +5,7 @@ export function CreateUser() {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    // Check if the role selection is valid (i.e., not the placeholder value)
+
     const roleValue = formData.get('role');
     if (!roleValue || roleValue === "0") {
       console.error("Invalid role selected");
@@ -14,7 +14,7 @@ export function CreateUser() {
 
     console.log("Form data to submit:", formData);
 
-    // Post the form data
+
     axios({
       method: 'post',
       url: "http://[::1]:3000/users.json",

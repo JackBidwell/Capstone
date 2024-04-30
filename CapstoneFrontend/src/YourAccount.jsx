@@ -51,8 +51,8 @@ export function YourAccount() {
           Authorization: `Bearer ${jwt}`
         }
       });
-      localStorage.clear(); // Clear user stored data
-      window.location.href = '/'; // Redirect to homepage or login page
+      localStorage.clear();
+      window.location.href = '/';
     } catch (err) {
       console.error('Failed to delete account:', err);
       setError('Failed to delete your account. Please try again later.');
@@ -67,7 +67,7 @@ export function YourAccount() {
     return <div>{error}</div>;
   }
 
-  const defaultPic = '/BlankProfile.webp'; // Path to the default image in the public folder
+  const defaultPic = '/BlankProfile.webp';
 
   return (
     <div className="account-container">

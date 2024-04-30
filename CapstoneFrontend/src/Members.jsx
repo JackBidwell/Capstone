@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Members() {
-  const [members, setMembers] = useState([]); // State to hold the member data
+  const [members, setMembers] = useState([]);
 
   useEffect(() => {
     const fetchMembers = async () => {

@@ -3,6 +3,27 @@
   font-family: "Times New Roman", Times, serif;
 }
 
+body {
+  cursor: url('/barbell.cur'), auto;
+}
+
+
+body * {
+  cursor: inherit;
+}
+
+
+.Header {
+  font-family: 'Arial', sans-serif;
+  background-color: dimgray;
+  /* A blue background color */
+  color: white;
+  padding: 0.5rem 1rem;
+  /* Padding around the content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* A subtle shadow for depth */
+}
+
 .YourCourses {
   background-image: url('/Pyros.jpeg');
   background-size: cover;
@@ -42,9 +63,6 @@
   min-width: 100vw;
   position: relative;
 }
-
-
-
 
 .container {
   padding: 2rem;
