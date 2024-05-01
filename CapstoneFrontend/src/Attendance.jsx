@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -19,15 +19,15 @@ export function Attendance() {
           if (status === 'active') {
             const courseTitle = course;
             const formattedDate = moment(date).format('YYYY-MM-DD');
-            acc[courseTitle] = acc[courseTitle] || [];
-            acc[courseTitle].push({ date: formattedDate, count: (acc[courseTitle][formattedDate] || 0) + 1 });
+            acc[formattedDate] = acc[formattedDate] || [];
+            acc[formattedDate].push({ name: courseTitle, count: (acc[formattedDate].find(item => item.name === courseTitle)?.count || 0) + 1 });
           }
           return acc;
         }, {});
 
-        const combinedData = courses.map(course => ({
-          name: course.title,
-          data: enrollmentCounts[course.title] || []
+        const combinedData = Object.keys(enrollmentCounts).map(date => ({
+          date,
+          courses: enrollmentCounts[date]
         }));
 
         setCourseData(combinedData);
@@ -52,17 +52,17 @@ export function Attendance() {
   return (
     <div className="container bg-white mt-4">
       <div className="row">
-        {courseData.map((course, index) => (
-          <div key={index} className="col-md-6 col-lg-4">
-            <h3 className='graph-title'>{course.name}</h3>
-            <LineChart width={400} height={300} data={course.data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        {courseData.map((entry, index) => (
+          <div key={index} className="col-md-12">
+            <h3 className='container'>{entry.date}</h3>
+            <BarChart width={1000} height={300} data={entry.courses} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis domain={[0, 10]} />
+              <XAxis dataKey="name" />
+              <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
-            </LineChart>
+              <Bar dataKey="count" fill="#8884d8" label={{ position: 'top' }} />
+            </BarChart>
           </div>
         ))}
       </div>
