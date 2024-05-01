@@ -16,7 +16,21 @@
   align-items: center;
 }
 
+.course-description {
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+  color: #ffffff;
+  mix-blend-mode: difference;
+  text-align: center;
+}
 
+.course-title {
+  font-size: 30px;
+  font-family: "Times New Roman", Times, serif;
+  color: #ffffff;
+  mix-blend-mode: difference;
+  text-align: center;
+}
 
 .Attendance {
   background-image: url('');

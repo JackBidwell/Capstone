@@ -27,11 +27,10 @@ end
 
 puts 'Created 10 users...'
 
-# Create Courses
 5.times do
   instructor = User.all.sample # Randomly pick an instructor
   Course.create!(
-    title: Faker::Educator.course_name,
+    title: ["Snatch Techniques", "Clean and Jerk Fundamentals", "Advanced Weightlifting", "Weightlifting Safety", "Competition Preparation"].sample,
     description: Faker::Lorem.sentence(word_count: 15),
     start_time: Faker::Time.forward(days: 23, period: :morning),
     end_time: Faker::Time.forward(days: 30, period: :evening),

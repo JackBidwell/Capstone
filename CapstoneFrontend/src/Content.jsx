@@ -12,7 +12,7 @@ import { YourCourses } from './YourCourses';
 import { YourAccount } from './YourAccount';
 import { Members } from './Members';
 import { Attendance } from './Attendance';
-import './App.css'; // Ensure you import your CSS for animations
+import './App.css';
 
 function Content() {
   let location = useLocation();

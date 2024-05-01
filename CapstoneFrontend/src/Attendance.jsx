@@ -72,7 +72,7 @@ export function Attendance() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="count" fill="" label={{ position: 'top' }} />
+              <Bar dataKey="count" fill="#8884d8" label={{ position: 'top' }} />
             </BarChart>
           </div>
         ))}

@@ -40,7 +40,7 @@ export function YourCourses() {
       return;
     }
     try {
-      await axios.delete(`http://localhost:3000/users/${userId}/enrollments/${enrollmentId}.json`, {
+      await axios.delete(`http://localhost:3000/course_enrollments/${enrollmentId}.json`, {
         headers: {
           Authorization: `Bearer ${jwt}`
         }
@@ -62,10 +62,10 @@ export function YourCourses() {
             {enrollments.map((enrollment) => (
               <div key={enrollment.id} className="list-group-item list-group-item-action flex-column align-items-start">
                 <div className="d-flex w-100 justify-content-between">
-                  <h3 className="mb-1">{enrollment.course.title}</h3>
+                  <h3 className="course-title">{enrollment.course.title}</h3>
                   <button className="btn btn-danger" onClick={() => handleDropCourse(enrollment.id)}>Drop Course</button>
                 </div>
-                <p className="mb-1">{enrollment.course.description}</p>
+                <p className="course-description">{enrollment.course.description}</p>
                 <small className="text-muted">Starts: {new Date(enrollment.course.start_time).toLocaleString()}</small>
                 <br />
                 <small className="text-muted">Ends: {new Date(enrollment.course.end_time).toLocaleString()}</small>
