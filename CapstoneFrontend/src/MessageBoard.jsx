@@ -47,13 +47,13 @@ export function MessageBoard() {
   const postReply = async (messageId) => {
     const jwt = localStorage.getItem('jwt');
     try {
-      await axios.post(`http://localhost:3000/messages/${messageId}/replies.json`, { content: replies[messageId] }, {
+      await axios.post(`http://localhost:3000/responses.json`, { content: replies[messageId], message_id: messageId, user_id: currentUser }, {
         headers: {
           Authorization: `Bearer ${jwt}`,
           'Content-Type': 'application/json'
         }
       });
-      fetchMessages(); // Refresh messages to show new reply
+      fetchMessages();
     } catch (error) {
       console.error('Error posting reply:', error);
     }

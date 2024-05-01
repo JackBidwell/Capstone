@@ -16,6 +16,7 @@ export function Login() {
         localStorage.setItem('name', response.data.name);
         localStorage.setItem('user_id', response.data.user_id);
         localStorage.setItem('role', response.data.role);
+        localStorage.setItem('profile_picture', response.data.profile_picture);
       })
       .catch((error) => {
         console.log(error);

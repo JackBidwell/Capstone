@@ -3,6 +3,7 @@
   font-family: "Times New Roman", Times, serif;
   color: #ffffff;
   mix-blend-mode: difference;
+  text-align: center;
 }
 
 
@@ -13,6 +14,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+
+.Attendance {
+  background-image: url('');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
+
+}
+
+.header-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .YourCourses {
@@ -42,12 +65,6 @@
   font-family: "Times New Roman", Times, serif;
 }
 
-/* .graph-title {
-  font-size: 40px;
-  font-family: "Times New Roman", Times, serif;
-  color: #ffffff;
-  mix-blend-mode: difference;
-} */
 
 .Home {
   background-image: url('/Tian.jpeg');

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-
 export function Header() {
   const isLoggedIn = !!localStorage.getItem('jwt');
   const username = localStorage.getItem('name');
   const isAdmin = localStorage.getItem('role') === 'admin';
+  const profile_picture = localStorage.getItem('profile_picture');
 
   const handleLogout = () => {
     localStorage.clear();
@@ -18,12 +18,20 @@ export function Header() {
     <div className='Header'>
       <header className="custom-navbar">
         <nav className="navbar navbar-expand-lg navbar-light">
-          <Link className="navbar-brand" to="/">{welcomeMessage}</Link>
+          <div className="left-side">
+            <Link to="/YourAccount" className="navbar-brand">
+              {welcomeMessage}
+              <img src={profile_picture} alt="Profile" className="header-image" style={{ marginLeft: '10px', borderRadius: '50%' }} />
+            </Link>
+          </div>
+          <Link to="/" className="home-link">
+            <img src="/Icon.jpeg" alt="Home" style={{ height: '50px' }} />
+          </Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav center-nav">
               {isLoggedIn && isAdmin ? (
                 <>
                   <li className="nav-item red-link">
@@ -36,7 +44,7 @@ export function Header() {
                     <Link to="/Attendance" className="nav-link">Attendance</Link>
                   </li>
                   <li className="nav-item green-link">
-                    <button className="nav-link btn btn-link" onClick={handleLogout} >Sign Out</button>
+                    <button className="nav-link btn btn-link" onClick={handleLogout}>Sign Out</button>
                   </li>
                 </>
               ) : isLoggedIn ? (
@@ -49,9 +57,6 @@ export function Header() {
                   </li>
                   <li className="nav-item yellow-link">
                     <Link to="/MessageBoard" className="nav-link">Messages</Link>
-                  </li>
-                  <li className="nav-item green-link">
-                    <Link to="/YourAccount" className="nav-link">Your Account</Link>
                   </li>
                   <li className="nav-item">
                     <button className="nav-link btn btn-link" onClick={handleLogout}>Sign Out</button>

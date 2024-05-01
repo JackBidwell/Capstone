@@ -5,6 +5,7 @@ import moment from 'moment';
 
 export function Attendance() {
   const [courseData, setCourseData] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -42,6 +43,14 @@ export function Attendance() {
     fetchData();
   }, []);
 
+  const handlePrev = () => {
+    setCurrentIndex(Math.max(0, currentIndex - 3));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex(Math.min(courseData.length - 3, currentIndex + 3));
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -49,22 +58,28 @@ export function Attendance() {
     return <div>Error: {error}</div>;
   }
 
+  const displayedData = courseData.slice(currentIndex, currentIndex + 3);
+
   return (
-    <div className="container bg-white mt-4">
+    <div className="container">
       <div className="row">
-        {courseData.map((entry, index) => (
+        {displayedData.map((entry, index) => (
           <div key={index} className="col-md-12">
-            <h3 className='container'>{entry.date}</h3>
-            <BarChart width={1000} height={300} data={entry.courses} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+            <h3 className='title'>{entry.date}</h3>
+            <BarChart width={1000} height={500} data={entry.courses}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="count" fill="#8884d8" label={{ position: 'top' }} />
+              <Bar dataKey="count" fill="" label={{ position: 'top' }} />
             </BarChart>
           </div>
         ))}
+      </div>
+      <div className="text-center mt-4">
+        <button onClick={handlePrev} disabled={currentIndex === 0} style={{ border: 'none', background: 'none', fontSize: '24px', marginRight: '20px' }}>&larr;</button>
+        <button onClick={handleNext} disabled={currentIndex >= courseData.length - 3} style={{ border: 'none', background: 'none', fontSize: '24px' }}>&rarr;</button>
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ export function YourAccount() {
   const deleteAccount = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
     if (!confirmDelete) {
-      return; // Early exit if user cancels the deletion
+      return;
     }
 
     const userId = localStorage.getItem('user_id');
