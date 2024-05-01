@@ -1,27 +1,18 @@
 .title {
   font-size: 40px;
   font-family: "Times New Roman", Times, serif;
-}
-
-body {
-  cursor: url('/barbell.cur'), auto;
-}
-
-
-body * {
-  cursor: inherit;
+  color: #ffffff;
+  mix-blend-mode: difference;
 }
 
 
 .Header {
-  font-family: 'Arial', sans-serif;
-  background-color: dimgray;
-  /* A blue background color */
-  color: white;
-  padding: 0.5rem 1rem;
-  /* Padding around the content */
+  font-family: 'Times New Roman';
+  padding: .5rem 20rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* A subtle shadow for depth */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .YourCourses {
@@ -94,10 +85,6 @@ h2.mb-3 {
   transition: background-color 0.3s;
 }
 
-.btn-primary:hover,
-.btn-danger:hover {
-  background-color: #555;
-}
 
 input[type="text"],
 textarea {
@@ -125,13 +112,7 @@ textarea:focus {
   transition: background-color 0.3s;
 }
 
-.btn-create-course:hover {
-  background-color: #218838;
-}
 
-
-
-/* Your Account Section */
 .account-container {
   display: flex;
   flex-direction: column;
@@ -178,6 +159,55 @@ textarea:focus {
   cursor: pointer;
 }
 
-.delete-button:hover {
-  background-color: #ff2e2e;
+.Messages {
+  background-image: url('/Lu.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
+
+}
+
+.response-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  /* Adjust padding to align bullet points as needed */
+}
+
+.response-item {
+  margin-bottom: 10px;
+  /* Space between response items */
+}
+
+.response-container {
+  border-left: 2px solid #ccc;
+  margin-left: 20px;
+  padding-left: 15px;
+  margin-top: 10px;
+}
+
+
+
+/* Page Transition Animations */
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 300ms, transform 300ms;
 }

@@ -1,13 +1,23 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export function Home() {
+
+  const [article, setArticle] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/v1/article_of_the_day')
+      .then(response => {
+        setArticle(response.data);
+      })
+      .catch(error => {
+        console.log('Error fetching article:', error);
+      });
+  }, []);
+
+
   return (
     <div className='Home'>
-      <header className="bg-dark text-white text-center py-5" style={{ opacity: '0.75' }}>
-        <h1>Welcome!</h1>
-      </header>
-
       <section className="container mt-5">
         <div className="row">
           <div className="col-md-6">
@@ -23,7 +33,7 @@ export function Home() {
           <div className="col-md-6">
             <div className="card" style={{ opacity: '0.85' }}>
               <div className="card-body">
-                <h2 className='title'>Contact Section</h2>
+                <h2 className='title'>{article.title}</h2>
                 <p className='body-text'>If you have any questions or inquiries, please feel free to contact us.</p>
                 <p>Email: info@example.com</p>
                 <p>Phone: 123-456-7890</p>

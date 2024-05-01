@@ -21,4 +21,12 @@ Rails.application.routes.draw do
 
   resources :sessions
 
+
+namespace :api do
+  namespace :v1 do
+    get 'article_of_the_day', to: 'articles#show'
+  end
+end
+
+
 end

@@ -92,7 +92,7 @@ export function Courses() {
   return (
     <div className="Courses">
       <div className="container mt-3">
-        <h2 className="mb-3">Courses List</h2>
+        <h2 className="title">Courses List</h2>
         {courses.length > 0 ? (
           <div className="list-group">
             {courses.map(course => (

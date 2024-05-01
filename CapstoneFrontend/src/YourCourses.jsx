@@ -56,7 +56,7 @@ export function YourCourses() {
   return (
     <div className='YourCourses'>
       <div className="container mt-3">
-        <h2 className="mb-3">Your Courses</h2>
+        <h2 className="title">Your Courses</h2>
         {enrollments.length > 0 ? (
           <div className="list-group">
             {enrollments.map((enrollment) => (
