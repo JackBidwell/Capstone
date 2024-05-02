@@ -70,7 +70,7 @@ export function YourAccount() {
   const defaultPic = '/BlankProfile.webp';
 
   return (
-    <div className="account-container">
+    <div className="container">
       <h2 className="account-title">Your Account</h2>
       <img
         src={`http://localhost:3000/${user.profile_picture}`}

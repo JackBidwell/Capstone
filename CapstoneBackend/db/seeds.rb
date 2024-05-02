@@ -1,13 +1,14 @@
-# seeds.rb
-
 require 'faker'
+require 'open-uri'
 
 # Clean up the existing records
-User.destroy_all
-Course.destroy_all
-CourseEnrollment.destroy_all
-Message.destroy_all
-Response.destroy_all
+ActiveRecord::Base.transaction do
+  User.destroy_all
+  Course.destroy_all
+  CourseEnrollment.destroy_all
+  Message.destroy_all
+  Response.destroy_all
+end
 
 # Helper method to hash passwords
 def hash_password(password)
@@ -29,13 +30,15 @@ puts 'Created 10 users...'
 
 5.times do
   instructor = User.all.sample # Randomly pick an instructor
-  Course.create!(
+  course = Course.create!(
     title: ["Snatch Techniques", "Clean and Jerk Fundamentals", "Advanced Weightlifting", "Weightlifting Safety", "Competition Preparation"].sample,
     description: Faker::Lorem.sentence(word_count: 15),
     start_time: Faker::Time.forward(days: 23, period: :morning),
     end_time: Faker::Time.forward(days: 30, period: :evening),
     instructor_id: instructor.id
   )
+  # Attach the image from Desktop
+  course.course_picture.attach(io: File.open(File.join(Dir.home, 'Desktop', 'Lasha.jpeg')), filename: 'Lasha.jpeg', content_type: 'image/jpeg')
 end
 
 puts 'Created 5 courses...'

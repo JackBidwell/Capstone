@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Slider from 'react-slick';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export function Courses() {
   const [courses, setCourses] = useState([]);
@@ -9,7 +12,7 @@ export function Courses() {
     description: '',
     start_time: '',
     end_time: '',
-    instructor_id: ''  // Assuming the UI allows setting this
+    instructor_id: ''
   });
   const isLoggedIn = !!localStorage.getItem('jwt');
   const isAdmin = localStorage.getItem('role') === 'admin';
@@ -24,8 +27,8 @@ export function Courses() {
       const response = await axios.get('http://localhost:3000/courses.json', {
         headers: { Authorization: `Bearer ${jwt}` }
       });
-      console.log('Courses:', response.data);
       setCourses(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);
     }
@@ -90,35 +93,52 @@ export function Courses() {
     setNewCourse({ ...newCourse, [name]: value });
   };
 
-  return (
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    centerMode: true,
+    centerPadding: '50px',
+  };
 
-    <div className="Courses container mt-3">
-      <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-        <ol className="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img className="d-block w-100" src="..." alt="First slide" />
+  return (
+    <div className="Courses" style={{ backgroundImage: "url('/Ilya.jpeg')" }}>
+      <Slider {...settings}>
+        {courses.map(course => (
+          <div key={course.id} className="course-container">
+            <img src={`http://localhost:3000${course.course_picture}`} className="course-picture" alt="Course" />
+            <div className="">
+              <h5 className="course-title">{course.title}</h5>
+              <p className="course-description">{course.description}</p>
+              <p className='course-instructor'>Taught by: {course.instructor.first_name}</p>
+              <div className="d-flex justify-content-between align-items-center">
+                {isLoggedIn && !isAdmin && (
+                  <button className="btn btn-primary" onClick={() => handleEnrollment(course.id)}>Enroll</button>
+                )}
+                {isAdmin && (
+                  <button className="btn btn-danger" onClick={() => handleDelete(course.id)}>Delete</button>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="carousel-item">
-            <img className="d-block w-100" src="..." alt="Second slide" />
-          </div>
-          <div className="carousel-item">
-            <img className="d-block w-100" src="..." alt="Third slide" />
-          </div>
+        ))}
+      </Slider>
+      {isAdmin && (
+        <div className="create-course-container">
+          <h2 className="title">Create New Course</h2>
+          <form className='container' onSubmit={handleCreateCourse}>
+            <input name="title" type="text" className="form-control mb-3" placeholder="Title" value={newCourse.title} onChange={updateNewCourseData} required />
+            <textarea name="description" className="form-control mb-3" placeholder="Description" value={newCourse.description} onChange={updateNewCourseData} required />
+            <input name="start_time" type="datetime-local" className="form-control mb-3" placeholder="Start Time" value={newCourse.start_time} onChange={updateNewCourseData} required />
+            <input name="end_time" type="datetime-local" className="form-control mb-3" placeholder="End Time" value={newCourse.end_time} onChange={updateNewCourseData} required />
+            <input name="instructor_id" type="number" className="form-control mb-3" placeholder="Instructor ID" value={newCourse.instructor_id} onChange={updateNewCourseData} />
+            <button type="submit" className="btn btn-primary btn-create-course">Create Course</button>
+          </form>
         </div>
-        <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="sr-only"></span>
-        </a>
-        <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="sr-only"></span>
-        </a>
-      </div>
+      )}
     </div>
   );
 }

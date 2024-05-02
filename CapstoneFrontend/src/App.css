@@ -1,134 +1,61 @@
-.title {
-  font-size: 40px;
+/* Base Styles and Typography */
+.title,
+.course-title,
+.course-description {
   font-family: "Times New Roman", Times, serif;
   color: #ffffff;
   mix-blend-mode: difference;
   text-align: center;
 }
 
+.title {
+  font-size: 40px;
+}
 
+.course-title {
+  font-size: 30px;
+}
+
+.course-description {
+  font-size: 20px;
+}
+
+.container,
+.account-info,
+.account-title {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem;
+  font-size: 22px;
+}
+
+.account-title {
+  font-size: 1.5em;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.account-info {
+  text-align: center;
+  font-size: 1em;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* Header Styles */
 .Header {
   font-family: 'Times New Roman';
-  padding: .5rem 20rem;
+  padding: 0.5rem 20rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.course-description {
-  font-size: 20px;
-  font-family: "Times New Roman", Times, serif;
-  color: #ffffff;
-  mix-blend-mode: difference;
-  text-align: center;
-}
-
-.course-title {
-  font-size: 30px;
-  font-family: "Times New Roman", Times, serif;
-  color: #ffffff;
-  mix-blend-mode: difference;
-  text-align: center;
-}
-
-.Attendance {
-  background-image: url('');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100vw;
-  position: relative;
-
-}
-
-.header-image {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.YourCourses {
-  background-image: url('/Pyros.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100vw;
-  position: relative;
-}
-
-.Courses {
-  background-image: url('/Ilya.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100vw;
-  position: relative;
-}
-
-.course-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-}
-
-.container {
-  text-align: center;
-  padding: 2rem;
-  font-size: 22px;
-  font-family: "Times New Roman", Times, serif;
-}
-
-
-.Home {
-  background-image: url('/Tian.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  min-width: 100vw;
-  position: relative;
-}
-
-.container {
-  padding: 2rem;
-  font-size: 22px;
-  font-family: "Times New Roman", Times, serif;
-}
-
-h2.mb-3 {
-  text-shadow: 2px 2px 4px #000000;
-}
-
-.list-group-item {
-  background-color: rgba(0, 0, 0, 0.85);
-  color: #ffffff;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
-  border: none;
-}
-
-.list-group-item h3 {
-  color: #ffffff;
-}
-
-.btn-primary,
-.btn-danger {
-  margin-left: 1rem;
-  border: none;
-  box-shadow: 2px 2px 4px #000000;
-  transition: background-color 0.3s;
-}
-
-
+/* Input Fields */
 input[type="text"],
 textarea {
   background-color: rgba(255, 255, 255, 0.7);
@@ -148,48 +75,24 @@ textarea:focus {
   box-shadow: none;
 }
 
-.btn-create-course {
-  background-color: #28a745;
-  color: #ffffff;
+/* Buttons */
+.btn-primary,
+.btn-danger,
+.btn-create-course,
+.delete-button {
   border: none;
   transition: background-color 0.3s;
 }
 
-
-.account-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: 50px auto;
+.btn-primary,
+.btn-danger {
+  margin-left: 1rem;
+  box-shadow: 2px 2px 4px #000000;
 }
 
-.account-title {
-  font-size: 1.5em;
-  color: #333333;
-  margin-bottom: 20px;
-}
-
-.profile-picture {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
-}
-
-.account-info {
-  text-align: center;
-  font-size: 1em;
-  color: #333333;
-  margin-bottom: 20px;
+.btn-create-course {
+  background-color: #28a745;
+  color: #ffffff;
 }
 
 .delete-button {
@@ -197,36 +100,107 @@ textarea:focus {
   font-size: 1em;
   color: #ffffff;
   background-color: #ff4d4f;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.Messages {
-  background-image: url('/Lu.jpeg');
+/* Image Styles */
+.header-image,
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+/* Course Styles */
+.Courses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('/Ilya.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.YourCourses,
+.Home,
+.Messages,
+.Attendance {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
   min-width: 100vw;
   position: relative;
+}
 
+.Courses {
+  background-image: url('/Ilya.jpeg');
+}
+
+.YourCourses {
+  background-image: url('/Pyros.jpeg');
+}
+
+.Home {
+  background-image: url('/Tian.jpeg');
+}
+
+.Messages {
+  background-image: url('/Lu.jpeg');
 }
 
 .message-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Attendance {
+  background-image: url('');
+}
+
+.course-container {
+
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 8px;
+  width: auto;
+  max-width: 600px;
+}
+
+.course-picture {
   width: 100%;
-  height: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* List and Message Styles */
+.list-group-item {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #ffffff;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  border: none;
 }
 
 .response-list {
   list-style-type: disc;
   padding-left: 20px;
-  /* Adjust padding to align bullet points as needed */
 }
 
 .response-item {
   margin-bottom: 10px;
-  /* Space between response items */
 }
 
 .response-container {
@@ -236,26 +210,143 @@ textarea:focus {
   margin-top: 10px;
 }
 
-
-
-/* Page Transition Animations */
-.fade-enter {
+/* Transition Animations */
+.fade-enter,
+.fade-exit {
   opacity: 0;
   transform: scale(0.95);
 }
 
-.fade-enter-active {
+.fade-enter-active,
+.fade-exit-active {
   opacity: 1;
   transform: scale(1);
   transition: opacity 300ms, transform 300ms;
 }
 
-.fade-exit {
-  opacity: 1;
+
+/* Create User */
+.account-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  /* Adjust width for better form presentation */
+  margin: auto;
+  /* Centering the modal content */
 }
 
-.fade-exit-active {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 300ms, transform 300ms;
+.modal-content {
+  border-radius: 8px;
+  /* Consistent rounded corners */
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Slight transparency */
+  color: #333333;
+  /* Dark text for readability */
+  border: 1px solid #888888;
+}
+
+.form-control:focus {
+  border-color: #555555;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-create-course {
+  width: 100%;
+  background-color: #28a745;
+  margin: auto;
+  color: #ffffff;
+
+  padding: 10px;
+
+  margin-top: 10px;
+
+}
+
+/* Modal Overlay */
+.modal-backdrop.show {
+  opacity: 0.5;
+  /* Semi-transparent backdrop */
+  background-color: #000;
+  /* Dark backdrop, can adjust color as needed */
+}
+
+/* Modal Dialog Enhancement */
+.modal-dialog {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  /* Shadow for floating effect */
+  margin-top: 10vh;
+  /* Push the modal down from the top of the viewport */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fff;
+  /* Ensure the background is solid */
+  border-radius: 8px;
+  /* Rounded corners for aesthetics */
+  padding: 20px;
+  /* Padding inside the modal content */
+  border: none;
+  /* Optional: remove border for cleaner look */
+}
+
+.Courses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* Take full viewport height */
+  background-image: url('/Ilya.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.course-container {
+  background: rgba(0, 0, 0, 0.6);
+
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+
+  max-width: 600px;
+}
+
+.course-title,
+.course-description,
+.course-instructor {
+  color: white;
+  /* Ensures text is readable on dark background */
+}
+
+.btn-primary,
+.btn-danger {
+  margin-top: 10px;
+}
+
+.create-course-container {
+  margin-top: 50px;
+  /* Space from the slider */
+  background: rgba(255, 255, 255, 0.8);
+  /* Slightly transparent for a lighter feel */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.btn-create-course {
+  background-color: #28a745;
+  /* Green color for consistency */
+  color: #fff;
+  margin-top: 10px;
+  /* Spacing above the button */
 }

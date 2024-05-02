@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios';
 
 export function CreateUser() {
@@ -5,8 +6,8 @@ export function CreateUser() {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    const email = formData.get('email'); // get email from form
-    const password = formData.get('password'); // get password from form
+    const email = formData.get('email'); // Get email from form
+    const password = formData.get('password'); // Get password from form
 
     const roleValue = formData.get('role');
     if (!roleValue || roleValue === "0") {
@@ -22,7 +23,6 @@ export function CreateUser() {
     })
       .then((response) => {
         console.log("User created: ", response.data);
-
         axios.post("http://[::1]:3000/sessions.json", { email, password })
           .then((loginResponse) => {
             console.log("Logged in: ", loginResponse.data);
@@ -45,9 +45,9 @@ export function CreateUser() {
   return (
     <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog">
       <div className="modal-dialog" role="document">
-        <div className="modal-content">
+        <div className="modal-content account-container">
           <div className="modal-header">
-            <h5 className="modal-title">Create Account</h5>
+            <h5 className="modal-title account-title">Create Account</h5>
           </div>
           <div className="modal-body">
             <form onSubmit={handleSubmitUser}>
@@ -64,7 +64,7 @@ export function CreateUser() {
                 <option value="instructor">Instructor</option>
               </select>
               <input name="profile_picture" type="file" className='form-control mb-3' required />
-              <button type="submit" className="btn btn-primary">Create Account</button>
+              <button type="submit" className="btn btn-primary btn-create-course">Create Account</button>
             </form>
           </div>
         </div>
@@ -72,3 +72,5 @@ export function CreateUser() {
     </div>
   );
 }
+
+

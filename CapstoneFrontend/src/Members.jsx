@@ -25,8 +25,8 @@ export function Members() {
   }, []);
 
   return (
-    <div className="container mt-3" style={{ opacity: '0.85' }}>
-      <h2 className="mb-3">Members List</h2>
+    <div className="container" style={{ opacity: '0.85' }}>
+      <h2 className="tile">Members List</h2>
       {members.length > 0 ? (
         <div className="list-group">
           {members.map(member => (
