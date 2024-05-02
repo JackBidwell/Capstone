@@ -1,0 +1,40 @@
+ <h2 className="title">Courses List</h2>
+      <div className="carousel slide">
+        {courses.length > 0 ? (
+          courses.map(course => (
+            <div key={course.id} className="col-md-4">
+              <div className="card mb-3">
+                <img src={course.course_picture || 'default-image-path.jpg'} className="card-img-top" alt="Course" />
+                <div className="card-body">
+                  <h5 className="card-title">{course.title}</h5>
+                  <p className="card-text">{course.description}</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    {isLoggedIn && !isAdmin && (
+                      <button className="btn btn-primary" onClick={() => handleEnrollment(course.id)}>Enroll</button>
+                    )}
+                    {isAdmin && (
+                      <button className="btn btn-danger" onClick={() => handleDelete(course.id)}>Delete</button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-muted">No courses available.</p>
+        )}
+      </div>
+      {isAdmin && (
+        <div>
+          <h2>Create New Course</h2>
+          <form onSubmit={handleCreateCourse}>
+            <input name="title" type="text" className="form-control mb-3" placeholder="Title" value={newCourse.title} onChange={updateNewCourseData} required />
+            <textarea name="description" className="form-control mb-3" placeholder="Description" value={newCourse.description} onChange={updateNewCourseData} required />
+            <input name="start_time" type="datetime-local" className="form-control mb-3" placeholder="Start Time" value={newCourse.start_time} onChange={updateNewCourseData} required />
+            <input name="end_time" type="datetime-local" className="form-control mb-3" placeholder="End Time" value={newCourse.end_time} onChange={updateNewCourseData} required />
+            <input name="instructor_id" type="number" className="form-control mb-3" placeholder="Instructor ID" value={newCourse.instructor_id} onChange={updateNewCourseData} />
+            <button type="submit" className="btn btn-primary">Create Course</button>
+          </form>
+        </div>
+      )}
+    </div>

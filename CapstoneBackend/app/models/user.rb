@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :taught_classes, class_name: 'Course', foreign_key: 'instructor_id'
   has_and_belongs_to_many :enrolled_classes, class_name: 'Course', join_table: 'course_enrollments'
   has_many :course_enrollments
+  has_many :responses, dependent: :delete_all
 end

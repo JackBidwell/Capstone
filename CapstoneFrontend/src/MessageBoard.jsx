@@ -18,7 +18,6 @@ export function MessageBoard() {
         }
       });
       setMessages(response.data);
-      // Initialize reply state for each message
       const replyInit = {};
       response.data.forEach(msg => replyInit[msg.id] = '');
       setReplies(replyInit);
@@ -98,7 +97,7 @@ export function MessageBoard() {
 
   return (
     <div className="Messages">
-      <div className="container mt-4">
+      <div className="message-container">
         <h2 className='title'>Messages</h2>
         <div className="list-group">
           {messages.length > 0 ? (

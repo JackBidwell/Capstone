@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
 
 
   def show
-    render json: @course
+    @user = Course.find(params[:id])
   end
 
 
@@ -47,7 +47,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.permit(:name, :description, :start_time, :end_time, :instructor_id)
+    params.permit(:name, :description, :start_time, :end_time, :instructor_id, :course_picture)
   end
 
 end

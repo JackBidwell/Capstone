@@ -30,6 +30,7 @@ export function CreateUser() {
             localStorage.setItem('name', loginResponse.data.name);
             localStorage.setItem('user_id', loginResponse.data.user_id);
             localStorage.setItem('role', loginResponse.data.role);
+            localStorage.setItem('profile_picture', loginResponse.data.profile_picture);
             window.location.href = '/';
           })
           .catch((loginError) => {

@@ -24,6 +24,7 @@ export function Courses() {
       const response = await axios.get('http://localhost:3000/courses.json', {
         headers: { Authorization: `Bearer ${jwt}` }
       });
+      console.log('Courses:', response.data);
       setCourses(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -90,42 +91,33 @@ export function Courses() {
   };
 
   return (
-    <div className="Courses">
-      <div className="container mt-3">
-        <h2 className="title">Courses List</h2>
-        {courses.length > 0 ? (
-          <div className="list-group">
-            {courses.map(course => (
-              <div key={course.id} className="list-group-item list-group-item-action flex-column align-items-start">
-                <div className="d-flex w-100 justify-content-between">
-                  <h3 className="mb-1">{course.title}</h3>
-                  {isLoggedIn && !isAdmin && (
-                    <button className="btn btn-primary" onClick={() => handleEnrollment(course.id)}>Enroll</button>
-                  )}
-                  {isAdmin && (
-                    <button className="btn btn-danger" onClick={() => handleDelete(course.id)}>Delete</button>
-                  )}
-                </div>
-                <p className="mb-2">{course.description}</p>
-              </div>
-            ))}
+
+    <div className="Courses container mt-3">
+      <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+        <ol className="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img className="d-block w-100" src="..." alt="First slide" />
           </div>
-        ) : (
-          <p className="text-muted">No courses available.</p>
-        )}
-        {isAdmin && (
-          <div className="mt-5">
-            <h2>Create New Course</h2>
-            <form onSubmit={handleCreateCourse}>
-              <input name="title" type="text" className="form-control mb-3" placeholder="Title" value={newCourse.title} onChange={updateNewCourseData} required />
-              <textarea name="description" className="form-control mb-3" placeholder="Description" value={newCourse.description} onChange={updateNewCourseData} required />
-              <input name="start_time" type="datetime-local" className="form-control mb-3" placeholder="Start Time" value={newCourse.start_time} onChange={updateNewCourseData} required />
-              <input name="end_time" type="datetime-local" className="form-control mb-3" placeholder="End Time" value={newCourse.end_time} onChange={updateNewCourseData} required />
-              <input name="instructor_id" type="number" className="form-control mb-3" placeholder="Instructor ID" value={newCourse.instructor_id} onChange={updateNewCourseData} />
-              <button type="submit" className="btn btn-primary">Create Course</button>
-            </form>
+          <div className="carousel-item">
+            <img className="d-block w-100" src="..." alt="Second slide" />
           </div>
-        )}
+          <div className="carousel-item">
+            <img className="d-block w-100" src="..." alt="Third slide" />
+          </div>
+        </div>
+        <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="sr-only"></span>
+        </a>
+        <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="sr-only"></span>
+        </a>
       </div>
     </div>
   );
