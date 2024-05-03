@@ -32,7 +32,6 @@ export function Home() {
   return (
     <div className='Home'>
       <section className="container mt-5">
-        {/* Article of the Day Section */}
         {article && (
           <div className="row">
             <div className="col-12">

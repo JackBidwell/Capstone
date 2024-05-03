@@ -21,7 +21,9 @@ export function Header() {
           <div className="left-side">
             <Link to="/YourAccount" className="navbar-brand">
               {welcomeMessage}
-              <img src={profile_picture} alt="" className="header-image" style={{ marginLeft: '10px', borderRadius: '50%' }} />
+              {isLoggedIn && profile_picture && (
+                <img src={profile_picture} alt="Profile" className="header-image" style={{ marginLeft: '10px', borderRadius: '50%' }} />
+              )}
             </Link>
           </div>
           <Link to="/" className="home-link">

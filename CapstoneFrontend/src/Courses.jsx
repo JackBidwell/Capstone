@@ -105,7 +105,7 @@ export function Courses() {
   };
 
   return (
-    <div className="Courses" style={{ backgroundImage: "url('/Ilya.jpeg')" }}>
+    <div className="Courses">
       <Slider {...settings}>
         {courses.map(course => (
           <div key={course.id} className="course-container">

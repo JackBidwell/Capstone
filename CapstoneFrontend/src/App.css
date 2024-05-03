@@ -12,14 +12,6 @@
   font-size: 40px;
 }
 
-.course-title {
-  font-size: 30px;
-}
-
-.course-description {
-  font-size: 20px;
-}
-
 .container,
 .account-info,
 .account-title {
@@ -121,16 +113,6 @@ textarea:focus {
   margin-bottom: 20px;
 }
 
-/* Course Styles */
-.Courses {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: url('/Ilya.jpeg');
-  background-size: cover;
-  background-position: center;
-}
 
 .YourCourses,
 .Home,
@@ -142,10 +124,6 @@ textarea:focus {
   min-height: 100vh;
   min-width: 100vw;
   position: relative;
-}
-
-.Courses {
-  background-image: url('/Ilya.jpeg');
 }
 
 .YourCourses {
@@ -170,22 +148,41 @@ textarea:focus {
   background-image: url('');
 }
 
-.course-container {
+/* Course Styles */
+.Courses {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* height: 100px; */
+  background-image: url('/Ilya.jpeg');
+  background-size: cover;
+  /* background-position: center; */
+}
 
+.course-container {
   background: rgba(0, 0, 0, 0.6);
   padding: 20px;
   border-radius: 8px;
   width: auto;
-  max-width: 600px;
+  /* max-width: 600px; */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .course-picture {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 100%;
+  size: 50%;
 }
 
-/* List and Message Styles */
+
+.course-title,
+.course-description,
+.course-instructor {
+  color: white;
+}
+
+
 .list-group-item {
   background-color: rgba(0, 0, 0, 0.85);
   color: #ffffff;
@@ -293,34 +290,6 @@ textarea:focus {
   /* Padding inside the modal content */
   border: none;
   /* Optional: remove border for cleaner look */
-}
-
-.Courses {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  /* Take full viewport height */
-  background-image: url('/Ilya.jpeg');
-  background-size: cover;
-  background-position: center;
-}
-
-.course-container {
-  background: rgba(0, 0, 0, 0.6);
-
-  padding: 20px;
-  border-radius: 8px;
-  width: 500px;
-
-  max-width: 600px;
-}
-
-.course-title,
-.course-description,
-.course-instructor {
-  color: white;
-  /* Ensures text is readable on dark background */
 }
 
 .btn-primary,

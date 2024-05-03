@@ -28,18 +28,44 @@ end
 
 puts 'Created 10 users...'
 
-5.times do
+# Define the list of course titles
+course_titles = ["Snatch Techniques", "Clean and Jerk Fundamentals", "Advanced Weightlifting", "Weightlifting Safety", "Competition Preparation"]
+
+# Shuffle the course titles to randomize the order
+shuffled_titles = course_titles.shuffle
+
+# Iterate over the shuffled list of course titles
+shuffled_titles.each do |title|
   instructor = User.all.sample # Randomly pick an instructor
+
+  # Determine the image filename based on the course title
+  image_filename = case title
+                   when "Snatch Techniques" then "Snatch.jpeg"
+                   when "Clean and Jerk Fundamentals" then "Lasha.jpeg"
+                   when "Advanced Weightlifting" then "AdvancedWeightlifting.jpeg"
+                   when "Weightlifting Safety" then "Safety.jpeg"
+                   when "Competition Preparation" then "Competition.jpeg"
+                   else "Default.jpeg" # A default image if none of the titles match
+                   end
+
+  # Create the course with the selected title
   course = Course.create!(
-    title: ["Snatch Techniques", "Clean and Jerk Fundamentals", "Advanced Weightlifting", "Weightlifting Safety", "Competition Preparation"].sample,
+    title: title,
     description: Faker::Lorem.sentence(word_count: 15),
     start_time: Faker::Time.forward(days: 23, period: :morning),
     end_time: Faker::Time.forward(days: 30, period: :evening),
     instructor_id: instructor.id
   )
-  # Attach the image from Desktop
-  course.course_picture.attach(io: File.open(File.join(Dir.home, 'Desktop', 'Lasha.jpeg')), filename: 'Lasha.jpeg', content_type: 'image/jpeg')
+
+  # Attach the image based on the course title
+  course.course_picture.attach(
+    io: File.open(File.join(Dir.home, 'Desktop', image_filename)),
+    filename: image_filename,
+    content_type: 'image/jpeg'
+  )
 end
+
+
 
 puts 'Created 5 courses...'
 
