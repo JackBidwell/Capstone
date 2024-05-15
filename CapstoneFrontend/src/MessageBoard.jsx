@@ -117,7 +117,7 @@ export function MessageBoard() {
                   <ul className="response-list">
                     {message.responses.map((response) => (
                       <li key={response.id} className="response-item">
-                        <strong>Response from {response.sender.FirstName} {response.sender.LastName} ({response.sender.Role}):</strong>
+                        <strong className={getRoleClass(message.sender.Role)}>Response from {response.sender.FirstName} {response.sender.LastName} ({response.sender.Role}):</strong>
                         <p>{response.content}</p>
                         <small>Replied on: {new Date(response.created_at).toLocaleDateString()}</small>
                       </li>

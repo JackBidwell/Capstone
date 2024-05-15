@@ -292,6 +292,26 @@ textarea:focus {
   /* Optional: remove border for cleaner look */
 }
 
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  /* Adjust height as needed */
+}
+
+.course-container {
+  text-align: center;
+}
+
+.course-picture {
+  margin: 0 auto;
+}
+
+.card {
+  margin: 0 auto;
+}
+
 .btn-primary,
 .btn-danger {
   margin-top: 10px;

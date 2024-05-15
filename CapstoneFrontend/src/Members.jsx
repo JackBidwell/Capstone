@@ -6,23 +6,37 @@ export function Members() {
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    const fetchMembers = async () => {
-      try {
-        const jwt = localStorage.getItem('jwt');
-        const response = await axios.get('http://localhost:3000/users.json', {
-          headers: {
-            Authorization: `Bearer ${jwt}`
-          }
-        });
-        setMembers(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error fetching members:', error);
-      }
-    };
-
     fetchMembers();
   }, []);
+
+  const fetchMembers = async () => {
+    try {
+      const jwt = localStorage.getItem('jwt');
+      const response = await axios.get('http://localhost:3000/users.json', {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
+      setMembers(response.data);
+    } catch (error) {
+      console.error('Error fetching members:', error);
+    }
+  };
+
+  const handleDelete = async (userId) => {
+    try {
+      const jwt = localStorage.getItem('jwt');
+      await axios.delete(`http://localhost:3000/users/${userId}.json`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`
+        }
+      });
+      setMembers(members.filter(member => member.id !== userId));
+      console.log('User deleted successfully');
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  };
 
   return (
     <div className="container" style={{ opacity: '0.85' }}>
@@ -33,7 +47,8 @@ export function Members() {
             <div key={member.id} className="list-group-item list-group-item-action flex-column align-items-start">
               <h3 className="mb-1">{member.FirstName} {member.LastName}</h3>
               <p className="mb-2">{member.email}</p>
-              <p className="text-muted">Role: {member.role} </p>
+              <p className="text-muted">Role: {member.role}</p>
+              <button onClick={() => handleDelete(member.id)} className="btn btn-danger">Delete</button>
             </div>
           ))}
         </div>
