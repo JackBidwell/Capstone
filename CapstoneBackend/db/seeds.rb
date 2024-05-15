@@ -28,44 +28,32 @@ end
 
 puts 'Created 10 users...'
 
-# Define the list of course titles
-course_titles = ["Snatch Techniques", "Clean and Jerk Fundamentals", "Advanced Weightlifting", "Weightlifting Safety", "Competition Preparation"]
+# Define the list of course titles and corresponding image URLs
+course_data = [
+  { title: "Snatch Techniques", url: "https://i.ytimg.com/vi/-TLFe2TWF78/maxresdefault.jpg" },
+  { title: "Clean and Jerk Fundamentals", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Lasha_Talakhadze_Rio_2016.jpg/1200px-Lasha_Talakhadze_Rio_2016.jpg" },
+  { title: "Advanced Weightlifting", url: "https://cloudfront-us-east-2.images.arcpublishing.com/reuters/CLJN7Z5CL5DVJOKG4EZKJAPIFU.JPG" },
+  { title: "Weightlifting Safety", url: "https://barbend.com/wp-content/uploads/2017/02/16523981_889255947883412_214331216_o.jpg" },
+  { title: "Competition Preparation", url: "https://www.ironcompany.com/media/magefan_blog/2021/03/Clarence-Kennedy.png" }
+]
 
-# Shuffle the course titles to randomize the order
-shuffled_titles = course_titles.shuffle
+# Shuffle the course data to randomize the order
+shuffled_course_data = course_data.shuffle
 
-# Iterate over the shuffled list of course titles
-shuffled_titles.each do |title|
+# Iterate over the shuffled list of course data
+shuffled_course_data.each do |data|
   instructor = User.all.sample # Randomly pick an instructor
 
-  # Determine the image filename based on the course title
-  image_filename = case title
-                   when "Snatch Techniques" then "Snatch.jpeg"
-                   when "Clean and Jerk Fundamentals" then "Lasha.jpeg"
-                   when "Advanced Weightlifting" then "AdvancedWeightlifting.jpeg"
-                   when "Weightlifting Safety" then "Safety.jpeg"
-                   when "Competition Preparation" then "Competition.jpeg"
-                   else "Default.jpeg" # A default image if none of the titles match
-                   end
-
-  # Create the course with the selected title
-  course = Course.create!(
-    title: title,
+  # Create the course with the selected title and image URL
+  Course.create!(
+    title: data[:title],
     description: Faker::Lorem.sentence(word_count: 15),
     start_time: Faker::Time.forward(days: 23, period: :morning),
     end_time: Faker::Time.forward(days: 30, period: :evening),
-    instructor_id: instructor.id
-  )
-
-  # Attach the image based on the course title
-  course.course_picture.attach(
-    io: File.open(File.join(Dir.home, 'Desktop', image_filename)),
-    filename: image_filename,
-    content_type: 'image/jpeg'
+    instructor_id: instructor.id,
+    course_picture_url: data[:url]
   )
 end
-
-
 
 puts 'Created 5 courses...'
 

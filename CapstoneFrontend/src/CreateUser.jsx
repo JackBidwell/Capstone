@@ -15,11 +15,21 @@ export function CreateUser() {
       return;
     }
 
+    const userData = {
+      FirstName: formData.get('FirstName'),
+      LastName: formData.get('LastName'),
+      email: email,
+      password: password,
+      password_confirmation: formData.get('password_confirmation'),
+      role: roleValue,
+      profile_picture_url: formData.get('profile_picture_url') // Get profile picture URL from form
+    };
+
     axios({
       method: 'post',
       url: "http://[::1]:3000/users.json",
-      data: formData,
-      headers: { 'Content-Type': 'multipart/form-data' }
+      data: userData,
+      headers: { 'Content-Type': 'application/json' }
     })
       .then((response) => {
         console.log("User created: ", response.data);
@@ -63,7 +73,7 @@ export function CreateUser() {
                 <option value="trialuser">7 Day Free Trial</option>
                 <option value="instructor">Instructor</option>
               </select>
-              <input name="profile_picture" type="file" className='form-control mb-3' required />
+              <input name="profile_picture_url" type="text" className='form-control mb-3' placeholder='Profile Picture URL' required />
               <button type="submit" className="btn btn-primary btn-create-course">Create Account</button>
             </form>
           </div>
@@ -72,5 +82,3 @@ export function CreateUser() {
     </div>
   );
 }
-
-

@@ -40,6 +40,6 @@ class UsersController < ApplicationController
 
   def user_params
     # Adjusted to include nested structure if your frontend wraps parameters under :user
-    params.permit(:FirstName, :LastName, :email, :password, :password_confirmation, :role, :profile_picture)
+    params.permit(:FirstName, :LastName, :email, :password, :password_confirmation, :role, :profile_picture_url)
   end
 end

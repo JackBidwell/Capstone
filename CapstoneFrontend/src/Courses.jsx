@@ -13,7 +13,7 @@ export function Courses() {
     start_time: '',
     end_time: '',
     instructor_id: '',
-    course_picture: null
+    course_picture_url: ''
   });
   const isLoggedIn = !!localStorage.getItem('jwt');
   const isAdmin = localStorage.getItem('role') === 'admin';
@@ -74,23 +74,24 @@ export function Courses() {
   const handleCreateCourse = async (event) => {
     event.preventDefault();
     const jwt = localStorage.getItem('jwt');
-    const formData = new FormData();
-    formData.append('title', newCourse.title);
-    formData.append('description', newCourse.description);
-    formData.append('start_time', newCourse.start_time);
-    formData.append('end_time', newCourse.end_time);
-    formData.append('instructor_id', newCourse.instructor_id);
-    formData.append('course_picture', newCourse.course_picture);
+    const courseData = {
+      title: newCourse.title,
+      description: newCourse.description,
+      start_time: newCourse.start_time,
+      end_time: newCourse.end_time,
+      instructor_id: newCourse.instructor_id,
+      course_picture_url: newCourse.course_picture_url
+    };
 
-    await axios.post('http://localhost:3000/courses.json', formData, {
+    await axios.post('http://localhost:3000/courses.json', courseData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${jwt}`
       }
     }).then(() => {
       alert('Course created successfully!');
       fetchCourses();
-      setNewCourse({ title: '', description: '', start_time: '', end_time: '', instructor_id: '', course_picture: null });
+      setNewCourse({ title: '', description: '', start_time: '', end_time: '', instructor_id: '', course_picture_url: '' });
     }).catch((error) => {
       console.error('Error creating course:', error);
       alert('Failed to create course.');
@@ -100,11 +101,6 @@ export function Courses() {
   const updateNewCourseData = (event) => {
     const { name, value } = event.target;
     setNewCourse({ ...newCourse, [name]: value });
-  };
-
-  const handlePictureChange = (event) => {
-    const file = event.target.files[0];
-    setNewCourse({ ...newCourse, course_picture: file });
   };
 
   const settings = {
@@ -123,7 +119,7 @@ export function Courses() {
       <Slider {...settings}>
         {courses.map(course => (
           <div key={course.id} className="course-container" >
-            <img src={`http://localhost:3000${course.course_picture}`} className="course-picture" alt="Course" style={{ width: '700px ', margin: 'center' }} />
+            <img src={course.course_picture_url} className="course-picture" alt="Course" style={{ width: '700px ', margin: 'center' }} />
             <div className="card" style={{ width: '700px', opacity: 0.85 }}>
               <div className="course-card">
                 <div className='card-body'>
@@ -167,7 +163,7 @@ export function Courses() {
             <input name="start_time" type="datetime-local" className="form-control mb-3" placeholder="Start Time" value={newCourse.start_time} onChange={updateNewCourseData} required />
             <input name="end_time" type="datetime-local" className="form-control mb-3" placeholder="End Time" value={newCourse.end_time} onChange={updateNewCourseData} required />
             <input name="instructor_id" type="number" className="form-control mb-3" placeholder="Instructor ID" value={newCourse.instructor_id} onChange={updateNewCourseData} />
-            <input name="course_picture" type="file" className='form-control mb-3' onChange={handlePictureChange} required />
+            <input name="course_picture_url" type="text" className='form-control mb-3' placeholder="Course Picture URL" value={newCourse.course_picture_url} onChange={updateNewCourseData} required />
             <button type="submit" className="btn btn-primary btn-create-course">Create Course</button>
           </form>
         </div>
