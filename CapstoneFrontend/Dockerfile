@@ -1,32 +1,29 @@
 # Use the official Node.js image.
-# https://hub.docker.com/_/node
 FROM node:18
 
-# Create and change to the app directory.
+# Set the working directory.
 WORKDIR /app
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure both package.json AND package-lock.json are copied.
-# Copying this separately prevents re-running npm install on every code change.
+# Copy package.json and package-lock.json files.
 COPY package*.json ./
 
-# Install production dependencies.
-RUN npm install --production
+# Install dependencies.
+RUN npm install
 
-# Copy local code to the container image.
+# Copy the rest of the application code.
 COPY . .
 
-# Build the React app
+# Build the React app.
 RUN npm run build
 
-# Install serve to serve the built app
+# Install serve globally.
 RUN npm install -g serve
 
-# Set environment variable to specify the port
+# Set environment variable to specify the port.
 ENV PORT 8080
 
-# Expose the port the app runs on
+# Expose the port the app runs on.
 EXPOSE 8080
 
-# Run the web service on container startup.
-CMD ["serve", "-s", "build"]
+# Serve the build directory.
+CMD ["serve", "-s", "dist"]
