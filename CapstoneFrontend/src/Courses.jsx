@@ -18,7 +18,6 @@ export function Courses() {
   const isLoggedIn = !!localStorage.getItem('jwt');
   const isAdmin = localStorage.getItem('role') === 'admin';
 
-  // const backendURL = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetchCourses();
@@ -62,7 +61,7 @@ export function Courses() {
 
   const handleDelete = async (courseId) => {
     const jwt = localStorage.getItem('jwt');
-    await axios.delete(`${backendURL}/courses/${courseId}.json`, {
+    await axios.delete(`https://capstone-avn4.onrender.com//courses/${courseId}.json`, {
       headers: { Authorization: `Bearer ${jwt}` }
     }).then(() => {
       alert('Course deleted successfully');
@@ -85,7 +84,7 @@ export function Courses() {
       course_picture_url: newCourse.course_picture_url
     };
 
-    await axios.post(`${backendURL}/courses.json`, courseData, {
+    await axios.post(`https://capstone-avn4.onrender.com//courses.json`, courseData, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${jwt}`
