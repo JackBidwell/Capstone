@@ -8,7 +8,7 @@ export function Home() {
   const randomNumber = Math.floor(Math.random() * 100) + 1;
 
   useEffect(() => {
-    axios.get('http://localhost:3000/article_of_the_day')
+    axios.get('https://capstone-avn4.onrender.com//article_of_the_day')
       .then(response => {
         setArticle(response.data[0].documents[0].passages[randomNumber]);
         console.log('Article:', response.data[0].documents[0].passages[randomNumber]);

@@ -12,7 +12,7 @@ export function MessageBoard() {
   const fetchMessages = async () => {
     const jwt = localStorage.getItem('jwt');
     try {
-      const response = await axios.get('http://localhost:3000/messages.json', {
+      const response = await axios.get('https://capstone-avn4.onrender.com/messages.json', {
         headers: {
           Authorization: `Bearer ${jwt}`
         }
@@ -30,7 +30,7 @@ export function MessageBoard() {
     event.preventDefault();
     const jwt = localStorage.getItem('jwt');
     try {
-      await axios.post('http://localhost:3000/messages.json', { content: messageContent }, {
+      await axios.post('https://capstone-avn4.onrender.com/messages.json', { content: messageContent }, {
         headers: {
           Authorization: `Bearer ${jwt}`,
           'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ export function MessageBoard() {
   const postReply = async (messageId) => {
     const jwt = localStorage.getItem('jwt');
     try {
-      await axios.post(`http://localhost:3000/responses.json`, { content: replies[messageId], message_id: messageId, user_id: currentUser }, {
+      await axios.post(`https://capstone-avn4.onrender.com/responses.json`, { content: replies[messageId], message_id: messageId, user_id: currentUser }, {
         headers: {
           Authorization: `Bearer ${jwt}`,
           'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ export function MessageBoard() {
   const deleteMessage = async (messageId) => {
     const jwt = localStorage.getItem('jwt');
     try {
-      await axios.delete(`http://localhost:3000/messages/${messageId}.json`, {
+      await axios.delete(`https://capstone-avn4.onrender.com/messages/${messageId}.json`, {
         headers: {
           Authorization: `Bearer ${jwt}`
         }

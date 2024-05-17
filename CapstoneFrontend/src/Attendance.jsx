@@ -12,8 +12,8 @@ export function Attendance() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: courses } = await axios.get('http://localhost:3000/courses.json');
-        const { data: enrollments } = await axios.get('http://localhost:3000/course_enrollments.json');
+        const { data: courses } = await axios.get('https://capstone-avn4.onrender.com/courses.json');
+        const { data: enrollments } = await axios.get('https://capstone-avn4.onrender.com/course_enrollments.json');
 
         const enrollmentCounts = enrollments.reduce((acc, enrollment) => {
           const { status, course, date } = enrollment;

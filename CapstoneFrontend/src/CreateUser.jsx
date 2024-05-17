@@ -25,15 +25,17 @@ export function CreateUser() {
       profile_picture_url: formData.get('profile_picture_url') // Get profile picture URL from form
     };
 
+
+
     axios({
       method: 'post',
-      url: "http://[::1]:3000/users.json",
+      url: `https://capstone-avn4.onrender.com//users.json`,
       data: userData,
       headers: { 'Content-Type': 'application/json' }
     })
       .then((response) => {
         console.log("User created: ", response.data);
-        axios.post("http://[::1]:3000/sessions.json", { email, password })
+        axios.post(`https://capstone-avn4.onrender.com//sessions.json`, { email, password })
           .then((loginResponse) => {
             console.log("Logged in: ", loginResponse.data);
             localStorage.setItem('jwt', loginResponse.data.jwt);

@@ -15,7 +15,7 @@ export function YourCourses() {
         return;
       }
       try {
-        const response = await axios.get(`http://localhost:3000/users/${userId}.json`, {
+        const response = await axios.get(`https://capstone-avn4.onrender.com/users/${userId}.json`, {
           headers: {
             Authorization: `Bearer ${jwt}`
           }
@@ -40,7 +40,7 @@ export function YourCourses() {
       return;
     }
     try {
-      await axios.delete(`http://localhost:3000/course_enrollments/${enrollmentId}.json`, {
+      await axios.delete(`https://capstone-avn4.onrender.com/course_enrollments/${enrollmentId}.json`, {
         headers: {
           Authorization: `Bearer ${jwt}`
         }

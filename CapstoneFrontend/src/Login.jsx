@@ -8,7 +8,14 @@ export function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("http://[::1]:3000/sessions.json", { email, password })
+    const backendURL = process.env.REACT_APP_BACKEND_URL;
+
+    if (!backendURL) {
+      console.error('REACT_APP_BACKEND_URL is not defined');
+      return;
+    }
+
+    axios.post(`https://capstone-avn4.onrender.com/sessions.json`, { email, password })
       .then((response) => {
         window.location.href = "/";
         console.log(response.data);

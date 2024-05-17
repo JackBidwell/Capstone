@@ -12,7 +12,7 @@ export function Members() {
   const fetchMembers = async () => {
     try {
       const jwt = localStorage.getItem('jwt');
-      const response = await axios.get('http://localhost:3000/users.json', {
+      const response = await axios.get('https://capstone-avn4.onrender.com/users.json', {
         headers: {
           Authorization: `Bearer ${jwt}`
         }
@@ -26,7 +26,7 @@ export function Members() {
   const handleDelete = async (userId) => {
     try {
       const jwt = localStorage.getItem('jwt');
-      await axios.delete(`http://localhost:3000/users/${userId}.json`, {
+      await axios.delete(`https://capstone-avn4.onrender.com/users/${userId}.json`, {
         headers: {
           Authorization: `Bearer ${jwt}`
         }
